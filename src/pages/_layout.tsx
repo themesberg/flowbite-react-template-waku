@@ -1,12 +1,22 @@
+import type { ReactNode } from "react";
 import { ThemeModeScript } from "flowbite-react";
-import type { PropsWithChildren } from "react";
 import "../styles.css";
 
-export default function RootLayout({ children }: PropsWithChildren) {
+type RootLayoutProps = { children: ReactNode };
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
-      <ThemeModeScript />
+      <head>
+        <ThemeModeScript />
+      </head>
       <main className="antialiased">{children}</main>
     </>
   );
 }
+
+export const getConfig = async () => {
+  return {
+    render: "static",
+  } as const;
+};
